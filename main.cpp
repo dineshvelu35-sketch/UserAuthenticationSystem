@@ -168,9 +168,13 @@ class USER{
 	public:
 	void ShowMenu()
 		{
-			cout<<"1. Registration."<<endl;
-			cout<<"2. Login."<<endl;
-			cout<<"3. Exit. "<<endl;
+			cout<<endl;
+			cout<< "========= MENU ==========\n";
+			cout<<"      1. Registration."<<endl;
+			cout<<"      2. Login."<<endl;
+			cout<<"      3. Exit. "<<endl;
+			cout<<"=========================="<<endl;
+			cout<<endl;
 			cout<<"Enter a Choice: ";
 		}
 		void RegisterMenu()
@@ -180,7 +184,7 @@ class USER{
 			int Age;
 			cout<<endl;
 			cout<<"--------------------------------"<<endl;
-			cout<<"Registration Portal"<<endl;
+			cout<<"      Registration Portal"<<endl;
 			cout<<"--------------------------------"<<endl;
 			cout<<endl;
 			cout<<"Enter Your Name: ";
@@ -269,12 +273,16 @@ class USER{
 			file<<Name<<"|"<<Age<<"|"<<DOB<<"|"<<Gend<<"|"<<Numb<<"|"<<Email_Id<<"|"<<PassWord<<endl;
 			file.close();
 			cout<<endl;
-			cout<<"Registered Successfully!!!"<<endl;
+			cout<<"--------------------------------"<<endl;
+			cout<<"      Registered Successfully!!!"<<endl;
 			cout<<"--------------------------------"<<endl;
 			cout<<endl;
 		}
 		void LoginMenu()
 		{
+			cout<<"--------------------------------"<<endl;
+			cout<<"      Login Portal"<<endl;
+			cout<<"--------------------------------"<<endl;
 			Email Em;
 			string Ch_Email,Ch_PassWord;
 			while(true)
@@ -321,6 +329,7 @@ class USER{
     				if(Email_Id == Ch_Email && PassWord == Ch_PassWord)
     				{
     					cout<<endl;
+    					cout<<"--------------------------------"<<endl;
         				cout << "Logged in Successfully!" << endl;
         				cout<<"--------------------------------"<<endl;
         				cout<<endl;
@@ -334,6 +343,9 @@ class USER{
 	};
 int main()
 {
+	cout<<"+--------------------------------+"<<endl;
+	cout<<"|   USER AUTHENTICATION SYSTEM   |"<<endl;
+	cout<<"+--------------------------------+"<<endl;
 	int Choice;
 	while(true)
 	{
