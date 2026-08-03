@@ -359,8 +359,8 @@ class USER{
 
     				if(Email_Id == Ch_Email && PassWord == Ch_PassWord)
     				{
-    					cout<<endl;
-    					cout<<"--------------------------------"<<endl;
+    					  cout<<endl;
+    					  cout<<"--------------------------------"<<endl;
         				cout <<"     Logged in Successfully!" << endl;
         				cout<<"--------------------------------"<<endl;
         				cout<<endl;
