@@ -16,7 +16,7 @@ class DateOfBirth
 				}
 				if(!isdigit(DOB[i]))
 				{
-					cout<<"The Entered Date Of Birth is Invalid. So Enter the valid Date of Birth Again"<<endl;
+					cout<<"**The Entered Date Of Birth is Invalid. So Enter the valid Date of Birth Again**"<<endl;
 					return false;
 				}
 			}
@@ -48,9 +48,29 @@ class DateOfBirth
 				return true;
 			}
 		}
-		cout<<"The Entered Date Of Birth is Invalid. So Enter the valid Date of Birth Again"<<endl;
+		cout<<"**The Entered Date Of Birth is Invalid. So Enter the valid Date of Birth Again**"<<endl;
 		return false;
 	}
+};
+class Age
+{
+	public:
+		int age(string A)
+		{
+			int	age=0;
+			for(int i=A.size()-1;i>=0;i--)
+			{
+				if(A[i]-'0'<10)
+				{
+					age=age*10+(A[i]-'0');
+				}
+				else
+				{
+					return -1;
+				}
+			}
+			return age;
+		}
 };
 class Gender
 {
@@ -62,7 +82,7 @@ class Gender
 		{
 			return true;
 		}
-		cout<<"You are allowed to enter only M-Male or F-Female, Again Enter the valid Information"<<endl;
+		cout<<"**You are allowed to enter only M-Male or F-Female, Again Enter the valid Information**"<<endl;
 		return false;
 	}
 };
@@ -88,7 +108,7 @@ class Number
 				return true;
 			}
 		}
-		cout<<"Invalid Number. Enter The Valid Number"<<endl;
+		cout<<"**Invalid Number. Enter The Valid Number**"<<endl;
 		return false;
 	}
 };
@@ -105,13 +125,13 @@ class Email
 				char c=namePart[i];
     			if(!(islower(c) || isdigit(c)))
     			{
-    				cout << "Entered Email is Invalid. Re-enter Valid Email ID."<<endl;
+    				cout << "**Entered Email is Invalid. Re-enter Valid Email ID.**"<<endl;
         			return false;
     			}
 			}
 			return true;
     	}
-    	cout << "Entered Email is Invalid. Re-enter Valid Email ID."<<endl;
+    	cout << "**Entered Email is Invalid. Re-enter Valid Email ID.**"<<endl;
 		return false;
 	}
 };
@@ -160,7 +180,7 @@ class Password
 		{
 			return true;
 		}
-		cout<<"Doesn't Match!"<<endl;
+		cout<<"**Doesn't Match!**"<<endl;
 		return false;
 	}
 };
@@ -179,9 +199,8 @@ class USER{
 		}
 		void RegisterMenu()
 		{
-			string Name,DOB,Numb,Email_Id,PassWord,PassConfirm;
+			string Name,age,DOB,Numb,Email_Id,PassWord,PassConfirm;
 			char Gend;
-			int Age;
 			cout<<endl;
 			cout<<"--------------------------------"<<endl;
 			cout<<"      Registration Portal"<<endl;
@@ -190,8 +209,19 @@ class USER{
 			cout<<"Enter Your Name: ";
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			getline(cin,Name);
-			cout<<"Enter Your Age: ";
-			cin>>Age;
+			Age Ag;
+			int A;
+			while(true)
+			{
+				cout<<"Enter Your Age: ";
+				cin>>age;
+				A=Ag.age(age);
+				if(A>0)
+				{
+					break;
+				}
+				cout<<"**Enter a Valid Age**"<<endl;
+			}
 			DateOfBirth Birth;
 			while(true)
 			{	
@@ -234,13 +264,13 @@ class USER{
 			}
 			start:
 			Password Pass;
-			cout << "Password must:"<<endl;
+			cout << "***Password must:"<<endl;
 			cout << "1. Be at least 8 characters long."<<endl;
 			cout << "2. Contain at least one uppercase letter."<<endl;
 			cout << "3. Contain at least one lowercase letter."<<endl;
 			cout << "4. Contain at least one digit."<<endl;
 			cout << "5. Contain at least one special character."<<endl;
-			cout << "6. Not contain spaces."<<endl;
+			cout << "6. Not contain spaces.***"<<endl;
 			while(true)
 			{
 				cout<<"Enter Your Password: ";
@@ -249,8 +279,8 @@ class USER{
 				{
 					break;
 				}
-				cout<<"Invalid PassWord."<<endl;
-				cout<<"ReEnter The PassWord According to the Condition."<<endl;	
+				cout<<"**Invalid PassWord."<<endl;
+				cout<<"ReEnter The PassWord According to the Condition.**"<<endl;	
 			}
 			while(true)
 			{
@@ -260,7 +290,7 @@ class USER{
 				{
 					break;
 				}
-				cout<<"If You Want ReEnter the Password press '1' or press '0' for ReEnter the password."<<endl;
+				cout<<"**If You Want ReEnter the Password press '1' or press '0' for ReEnter the password.**"<<endl;
 				int option;
 				cout<<"Enter: ";
 				cin>>option;
@@ -270,7 +300,7 @@ class USER{
 				}
 			}
 			ofstream file("User.txt",ios::app);
-			file<<Name<<"|"<<Age<<"|"<<DOB<<"|"<<Gend<<"|"<<Numb<<"|"<<Email_Id<<"|"<<PassWord<<endl;
+			file<<Name<<"|"<<A<<"|"<<DOB<<"|"<<Gend<<"|"<<Numb<<"|"<<Email_Id<<"|"<<PassWord<<endl;
 			file.close();
 			cout<<endl;
 			cout<<"--------------------------------"<<endl;
@@ -280,9 +310,11 @@ class USER{
 		}
 		void LoginMenu()
 		{
+			cout<<endl;
 			cout<<"--------------------------------"<<endl;
 			cout<<"      Login Portal"<<endl;
 			cout<<"--------------------------------"<<endl;
+			cout<<endl;
 			Email Em;
 			string Ch_Email,Ch_PassWord;
 			while(true)
@@ -293,15 +325,14 @@ class USER{
     			{
         			break;
     			}
-				cout << "Entered Email is Invalid. Re-enter Valid Email ID."<<endl;
 			}
 			cout<<"Enter Your Password: ";
 			cin>>Ch_PassWord;
 			ifstream file("User.txt");			
 			if(!file)
 			{
-				cout<<"No Registered Users Found."<<endl;
-    			cout<<"Retry"<<endl;
+				cout<<"**No Registered Users Found."<<endl;
+    			cout<<"Retry**"<<endl;
 			}
 			else
 			{
@@ -328,16 +359,16 @@ class USER{
 
     				if(Email_Id == Ch_Email && PassWord == Ch_PassWord)
     				{
-    					cout<<endl;
-    					cout<<"--------------------------------"<<endl;
-        				cout << "Logged in Successfully!" << endl;
+    					  cout<<endl;
+    					  cout<<"--------------------------------"<<endl;
+        				cout <<"     Logged in Successfully!" << endl;
         				cout<<"--------------------------------"<<endl;
         				cout<<endl;
        	 				return;
     				}
 				}
-				cout<<"The Given Email or Password is InCorrect"<<endl;
-				cout<<"Retry"<<endl;
+				cout<<"**The Given Email or Password is InCorrect"<<endl;
+				cout<<"Retry**"<<endl;
 			}
 		}
 	};
@@ -346,28 +377,28 @@ int main()
 	cout<<"+--------------------------------+"<<endl;
 	cout<<"|   USER AUTHENTICATION SYSTEM   |"<<endl;
 	cout<<"+--------------------------------+"<<endl;
-	int Choice;
+	char Choice;
 	while(true)
 	{
 		USER User;
 		start:
 		User.ShowMenu();
-		cin>>Choice;
+		cin>>Choice;	
 		switch(Choice)
 		{
-			case 1:
+			case '1':
 				User.RegisterMenu();
 				break;
-			case 2:
+			case '2':
 				User.LoginMenu();
 				break;
-			case 3:
+			case '3':
 				cout<<endl;
 				cout<<"--------------------------------"<<endl;
 				cout<<"Exited SuccessFully!!!"<<endl;
 				return 0;
 			default:
-				cout<<"Enter a Valid Choice"<<endl;
+				cout<<"**Enter a Valid Choice**"<<endl;
 				goto start;
 		}
 	}
